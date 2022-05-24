@@ -1,0 +1,27 @@
+#spells {
+    width: 60%;
+    height: 40vh;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #5e1916;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: both;
+}
+
+.form-wrapper textarea,
+input[type='submit']{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+input[type='submit'] {
+    margin-top: 2rem;
+    width: 30%;
+    font-size: larger;
+    height: 50px;
+    background-color: #141418;
+    border-radius: 20px;
+    color: white;
+}

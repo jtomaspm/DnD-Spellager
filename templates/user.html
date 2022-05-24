@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/user.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<title>User Profile</title>
+{% endblock %}
+
+{% block body %}
+
+<div class="title">
+    <h1>{{ username }}'s Spells</h1>
+</div>
+
+{% if spells %}
+<div class="spell-table-wrapper">
+    <table class="spell-table">
+        <thead>
+            <tr>
+                <th class="spell-table-head-link {% if order_by == 'name' %}active{% endif %}"><a href="{{url_for('user')}}?order_by=name{% if order_by %}&last_filter={{order_by}}{% endif %}">Name</a></th>
+                <th class="spell-table-head-link {% if order_by == 'level' %}active{% endif %}"><a href="{{url_for('user')}}?order_by=level{% if order_by %}&last_filter={{order_by}}{% endif %}">Level</a></th>
+                <th class="spell-table-head-link {% if order_by == 'range' %}active{% endif %}"><a href="{{url_for('user')}}?order_by=range{% if order_by %}&last_filter={{order_by}}{% endif %}">Range</a></th>
+                <th class="spell-table-head-link {% if order_by == 'casting_time' %}active{% endif %}"><a href="{{url_for('user')}}?order_by=casting_time{% if order_by %}&last_filter={{order_by}}{% endif %}">Cast Time</a></th>
+                <th class="spell-table-head-link {% if order_by == 'duration' %}active{% endif %}"><a href="{{url_for('user')}}?order_by=duration{% if order_by %}&last_filter={{order_by}}{% endif %}">Duration</a></th>
+                <th class="spell-table-head-link {% if order_by == 'damage' %}active{% endif %}"><a href="{{url_for('user')}}?order_by=damage{% if order_by %}&last_filter={{order_by}}{% endif %}">Damage</a></th>
+                <th class="spell-table-head-link {% if order_by == 'heal_at_slot_level' %}active{% endif %}"><a href="{{url_for('user')}}?order_by=heal_at_slot_level{% if order_by %}&last_filter={{order_by}}{% endif %}">Heal</a></th>
+                <th class="spell-table-head-link {% if order_by == 'area_of_effect' %}active{% endif %}"><a href="{{url_for('user')}}?order_by=area_of_effect{% if order_by %}&last_filter={{order_by}}{% endif %}">AoE</a></th>
+                <th class="spell-table-head-link {% if order_by == 'dc' %}active{% endif %}"><a href="{{url_for('user')}}?order_by=dc{% if order_by %}&last_filter={{order_by}}{% endif %}">Dc</a></th>
+                <th>DEL</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for spell in spells %}
+            <tr>
+                <td id="{{spell['index']}}" class="spell-row spell-name">{{spell['name']}}</td>
+                <td>{{spell['level']}}</td>
+                <td>{{spell['range']}}</td>
+                <td>{{spell['casting_time']}}</td>
+                <td>{{spell['duration']}}</td>
+                {% if spell['damage'] %}
+                <td>{{spell['damage']['damage_at_slot_level']['' ~ spell['level']]}}, {{spell['damage']['damage_type']['name']}}</td>
+                {% else %}
+                <td>-</td>
+                {% endif %}
+                {% if spell['heal_at_slot_level'] %}
+                <td>{{spell['heal_at_slot_level']['' ~ spell['level']]}}</td>
+                {% else %}
+                <td>-</td>
+                {% endif %}
+                {% if spell['area_of_effect'] %}
+                <td>{{spell['area_of_effect']['size']}}, {{spell['area_of_effect']['type']}}</td>
+                {% else %}
+                <td>-</td>
+                {% endif %}
+                {% if spell['dc'] %}
+                <td>{{spell['dc']['dc_type']['name']}}</td>
+                {% else %}
+                <td>-</td>
+                {% endif %}
+                <td class="del-td"><button class="del-btn" type="submit" onclick="location.href='{{url_for('delete')}}?spell_index={{spell['index']}}';"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endif %}
+
+<script>
+    var elems = Array.prototype.slice.call(document.getElementsByClassName("spell-row"))
+    elems.forEach(elem => {
+        elem.onclick = function() { window.open('/spells?search_query='+elem.id, '_blank'); };        
+    });
+</script>
+{% endblock %}

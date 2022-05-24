@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/addmanualspell.css') }}">
+    <title>Add Spell Manually</title>
+{% endblock %}
+
+{% block body %}
+
+<div class="title">
+    <h1>Add Spell  Manually</h1>
+</div>
+
+{% if not_found %}
+<div class="not-found">
+    <h3>The following spells were not found:</h3><br>
+{% for spell_name in not_found %}
+    <p style="color: rgb(255, 0, 0);">{{spell_name}}</p>
+{% endfor %}
+    <br>
+    <p>Would you like to add them manually?</p>
+</div>
+{% endif %}
+
+<div class="form-wrapper">
+    <form action="" method="POST">
+
+        <div class="data">
+            <div class="top">
+
+                <div class="left">
+
+                    <div class="form-item">
+                        <label for="name">Name</label><br>
+                        <input type="text" id="name" name="name" placeholder="Spell Name" required>
+                    </div>
+                    
+                    <div class="form-item">
+                        <label for="level">Level</label><br>
+                        <input type="text" id="level" name="level" placeholder="0 for cantrip" required>
+                    </div>
+                    
+                    <div class="form-item">
+                        <label for="school">School</label><br>
+                        <input type="text" id="school" name="school" placeholder="Ex: Evocation">
+                    </div>
+                    
+                    <div class="form-item">
+                        <label for="casting_time">Casting Time</label><br>
+                        <input type="text" id="casting_time" name="casting_time" placeholder="Ex: 1 action" required>
+                    </div>
+                    
+                    <div class="form-item">
+                        <label for="range">Range</label><br>
+                        <input type="text" id="range" name="range" placeholder="Ex: 30 feet" required>
+                    </div>
+                    
+                    <div class="form-item">
+                        <label for="components">Components</label><br>
+                        <input type="text" id="components" name="components" placeholder="Ex: V, S">
+                    </div>
+                    
+                    <div class="form-item">
+                        <label for="duration">Duration</label><br>
+                        <input type="text" id="duration" name="duration" placeholder="Ex: 1 minute">
+                    </div>
+                    
+                    <div class="form-item">
+                        <label for="ritual">Ritual</label>
+                        <input type="checkbox" id="ritual" name="ritual">
+                    </div>
+                    
+                    <div class="form-item">
+                        <label for="concentration">Concentration</label>
+                        <input type="checkbox" id="concentration" name="concentration">
+                    </div>
+                    
+                </div>
+
+                <div class="rigth">
+
+                    <div class="form-item">
+                        <label for="damage">Damage</label><br>
+                        <input type="text" id="damage" name="damage" placeholder="Ex: 3d6">
+                    </div>
+            
+                    <div class="form-item">
+                        <label for="damage_type">Damage Type</label><br>
+                        <input type="text" id="damage_type" name="damage_type" placeholder="Ex: Fire">
+                    </div>
+            
+                    <div class="form-item">
+                        <label for="heal_at_slot_level">Heal</label><br>
+                        <input type="text" id="heal_at_slot_level" name="heal_at_slot_level" placeholder="Ex: 2d6 + MOD">
+                    </div>
+            
+                    <div class="form-item">
+                        <label for="dc">Dc Type</label><br>
+                        <input type="text" id="dc" name="dc" placeholder="Ex: STR">
+                    </div>
+                    
+                    <div class="form-item">
+                        <label for="aoe_size">AoE Size</label><br>
+                        <input type="text" id="aoe_size" name="aoe_size" placeholder="Ex: 30">
+                    </div>
+            
+                    <div class="form-item">
+                        <label for="aoe_type">AoE Type</label><br>
+                        <input type="text" id="aoe_type" name="aoe_type" placeholder="Ex: Cone">
+                    </div>
+                    <div class="form-item">
+                        <label for="material">Material</label><br>
+                        <input type="text" id="material" name="material" placeholder="Ex: A club or quarterstaff">
+                    </div>
+            
+                    <div class="form-item">
+                        <label for="classes">Classes</label><br>
+                        <input type="text" id="classes" name="classes" placeholder="Ex: Druid, Wizzard">
+                    </div>
+            
+                </div>
+            </div>
+
+            <div class="bottom">
+        
+                <div class="form-item">
+                    <label for="desc">Description</label><br>
+                    <textarea id="desc" name="desc" placeholder="Spell description" required></textarea>
+                </div>
+        
+                <div class="form-item">
+                    <label for="higher_level">Higher Level</label><br>
+                    <textarea id="higher_level" name="higher_level" placeholder="At higher levels"></textarea>
+                </div>
+        
+            </div>
+            
+        </div>
+
+        <div class="form-item sub-btn">
+            <button type="submit">Add Spell</button>
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}

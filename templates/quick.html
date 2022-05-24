@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/quick.css') }}">
+<title>Quick</title>
+{% endblock %}
+
+{% block body %}
+
+<div class="title">
+    <h1>Quick Build</h1>
+</div>
+
+<div class="form-wrapper">
+    <form action="{{url_for('addmultiple')}}" method="POST">
+        <textarea name="spells" id="spells" placeholder="One spell name per line" required></textarea><br>
+        <input type="submit" value="Add Spells">
+    </form>
+    <input type="submit" onclick="location.href='{{url_for('addmanualspell')}}'" value="Add Spell Manually">
+</div>
+
+{% endblock %}

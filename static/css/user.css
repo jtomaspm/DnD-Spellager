@@ -1,0 +1,68 @@
+.spell-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.spell-table thead tr {
+    background-color: #d21404;
+    color: white;
+    text-align: left;
+    font-weight: bold;
+}
+
+
+.spell-table td {
+    padding: 12px 15px;
+}
+
+.spell-table th {
+    padding: 12px 15px;   
+}
+
+.spell-table-head-link a {
+    color:inherit;
+    text-decoration:none;
+}
+
+.spell-table-head-link:hover {
+    background-color: #5e1916;
+}
+
+.spell-table tbody tr {
+    border: 1px solid #141418;
+    line-height: .85rem;
+}
+
+.spell-table tbody tr:hover {
+    background-color: #43393b;
+    background-blend-mode:overlay;
+}
+
+
+.spell-name:hover {
+    background-color: #5e1916 !important;
+    cursor: pointer;
+}
+
+.spell-table-wrapper {
+    width:100%;
+}
+
+.active{
+    background-color: #3c120f;
+}
+
+.del-td:hover {
+    background-color: #5e1916;
+}
+
+
+.del-btn{
+    border: none;
+    background: none;
+    color: white;
+    cursor: pointer;
+}
